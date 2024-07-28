@@ -1,0 +1,25 @@
+name: Build TuTuApp clone ipa
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    name: install dependencies and build the app
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: install dependencies
+        run: npm install
+        
+      - name: serve with hot reload at localhost:8080
+        run: npm run dev
+        
+      - name: build for production with minification
+        run: npm run build
